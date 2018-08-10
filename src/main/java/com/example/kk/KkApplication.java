@@ -1,12 +1,12 @@
-package com.yoyo.yoyo;
+package com.example.kk;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class YoyoApplication {
+public class KkApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(YoyoApplication.class, args);
+        SpringApplication.run(KkApplication.class, args);
     }
 }
