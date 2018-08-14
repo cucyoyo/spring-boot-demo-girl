@@ -1,4 +1,6 @@
 spring:
+  main:
+#    web-environment: false
   profiles:
     active: dev
   datasource:

@@ -85,7 +85,7 @@ JPA 定义了一系列对象持久化的标准（文本上的一个规范）
 ```xml
 <dependency>
     <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-jpa</artifactId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
 </dependency>
 
 <dependency>
@@ -95,6 +95,26 @@ JPA 定义了一系列对象持久化的标准（文本上的一个规范）
 
 ```
 ### 2. 配置
+```
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/dbgirl
+    username: root
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: create # 在运行时自动创建一个表
+    show-sql: true # 在控制台里面看到sql语句
+```
+
+### Cannot resolve Entity
+- Go to `File > Project Structure > Facets`. 
+- Then click on the + icon and add JPA to your project/module. After you've done this, you can select a Default JPA Provider. 
+- 然后点击fix问题 download ok
+
 
 
 
