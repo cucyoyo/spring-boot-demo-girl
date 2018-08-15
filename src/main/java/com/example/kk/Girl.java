@@ -1,3 +1,4 @@
+// 使用@Entity注解将girl对应数据库里的一张表
 package com.example.kk;
 
 import javax.persistence.Entity;

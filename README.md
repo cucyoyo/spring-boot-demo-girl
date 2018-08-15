@@ -1,5 +1,5 @@
 ## spring boot 入门示例
-- 参考：[慕课网：2小时学会Spring Boot](https://www.imooc.com/learn/767)
+- 参考：[慕课网：2小时学会Spring Boot](https://www.imooc.com/learn/767) | [慕课网：Spring Boot进阶之Web进阶](https://www.imooc.com/learn/810)
 - 编辑器：IDEA （可以直接生成boot框架代码）
 - demo主要内容：http请求方法(几种注解方法) + 数据库基本增删改查
 
@@ -109,6 +109,17 @@ spring:
       ddl-auto: create # 在运行时自动创建一个表
     show-sql: true # 在控制台里面看到sql语句
 ```
+### post\put 方法传参，在postMan中的设置
+![](./imgs/post-controller-parms.png)
+![](./imgs/put-controller-parms.png)
+
+### 多点选择
+alt + shift + mouse
+
+### 如果事务操作@Transaction不生效可能是数据表类型不对所致
+只有innodb类型的数据库才支持事务
+
+alter table table_name engine=innodb;  
 
 ### !!!!! 之前的各种依赖冲突报错可能都是由于这个问题 
 java.lang.NoSuchMethodError: javax.persistence.spi.PersistenceUnitInfo.getValidationMode()Lja
@@ -125,7 +136,7 @@ java.lang.NoSuchMethodError: javax.persistence.spi.PersistenceUnitInfo.getValida
 ### spring boot 写一个web项目，在使用spring-data-jpa的时候，启动报如下错误：
     
 > Error starting ApplicationContext. To display the auto-configuration report re-run your application with 'debug' enabled.
-    2018-04-02 17:00:47.076 ERROR 4648 --- [ main] o.s.boot.SpringApplication : Application startup failed
+    2018-04-02 17:00:47.076 ERROR 4648 --- [main] o.s.boot.SpringApplication : Application startup failed
     
 - 解决方式：加入依赖既可
 
@@ -157,7 +168,7 @@ java.lang.NoSuchMethodError: javax.persistence.spi.PersistenceUnitInfo.getValida
 在文件名称或文件打开内容上`右键->maven->reimport`
 
 ### 设置pom.xml自动reimport
-![截图](./imgs/pom-auto-reimport.png)
+![截图](./imgs/auto-reimport-maven-project.png)
 
 ### 可视化查看依赖关系
 `窗口右侧->maven Project->右键 show dependencies`（这里可以查看依赖冲突）

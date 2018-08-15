@@ -1,3 +1,4 @@
+// @Controller + @ResponseBody 结合使用的一个demo，这两个注解结合相当于RestController
 package com.example.kk;
 
 import org.springframework.beans.factory.annotation.Autowired;

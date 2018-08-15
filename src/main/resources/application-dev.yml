@@ -1,6 +1,6 @@
 server:
   port: 8080
-  context-path: /girl
+#  context-path: /girl
 # 注意空格
 cupSize: B
 age: 18
