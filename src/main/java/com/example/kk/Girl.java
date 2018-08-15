@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity // 说明这个类与数据库表相对应
+@Entity
 public class Girl {
     @Id
     @GeneratedValue // 配置id自增

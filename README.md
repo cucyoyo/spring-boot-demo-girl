@@ -110,13 +110,42 @@ spring:
     show-sql: true # 在控制台里面看到sql语句
 ```
 
+### !!!!! 之前的各种依赖冲突报错可能都是由于这个问题 
+java.lang.NoSuchMethodError: javax.persistence.spi.PersistenceUnitInfo.getValidationMode()Lja
+>这个问题困扰了我一天原来是servlet跟javaee.jar里面的jpa接口冲突了。解决方法是：
+移除MyEclipse自带的javaEE包加入javaEE中的jsf-api.jar jsf-impl.jar jstl-1.2.jar 包，
+再加入tomcat中的servlet-api.jar，其实就是将javaEE中的javaee.jar用tomcat中的servlet-api.jar换掉，
+这样这个问题就解决了。
+
 ### Cannot resolve Entity
 - Go to `File > Project Structure > Facets`. 
 - Then click on the + icon and add JPA to your project/module. After you've done this, you can select a Default JPA Provider. 
 - 然后点击fix问题 download ok
 
+### spring boot 写一个web项目，在使用spring-data-jpa的时候，启动报如下错误：
+    
+> Error starting ApplicationContext. To display the auto-configuration report re-run your application with 'debug' enabled.
+    2018-04-02 17:00:47.076 ERROR 4648 --- [ main] o.s.boot.SpringApplication : Application startup failed
+    
+- 解决方式：加入依赖既可
 
+```xml
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-entitymanager</artifactId>
+    <version>5.0.3.Final</version>
+</dependency>
+```    
+另外，有看到资料说，在mainApplication中，加如下注解也可以解决：
 
+`@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})`
+
+启动的确不报错了，但是此时，自动创建表功能并未实现，建议用第一种方式。
+
+### 添加classPath
+- file - project structure - SDKs
+### tomcat server配置
+- file - settings - build, execution, development - application server
 
 ## 踩坑 + 埋坑
 - java 9及以上版本不支持`spring-boot-devtools`中的`ClassLoaders`方法，在`files -> project structure -> JDKs`中更换版本到`jdk8`即可
