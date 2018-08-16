@@ -4,6 +4,7 @@ package com.example.kk.controller;
 import com.example.kk.domain.Girl;
 import com.example.kk.repository.GirlRepository;
 import com.example.kk.service.GirlService;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
@@ -25,6 +26,7 @@ public class GirlController {
     // 查询女生列表
     @GetMapping(value = "/girls")
     public List<Girl> girlList() {
+        System.out.println("2222");
         return girlRepository.findAll();
     }
 
@@ -44,6 +46,7 @@ public class GirlController {
             System.out.println(bindingResult.getFieldError().getDefaultMessage());
             return null;
         }
+        System.out.println("2222");
         girl.setCupSize(girl.getCupSize());
         girl.setAge(girl.getAge());
         return girlRepository.save(girl);

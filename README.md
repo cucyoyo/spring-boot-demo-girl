@@ -72,17 +72,6 @@ spring:
 ### 多点选择
 alt + shift + mouse
 
-### AOP是一种程序设计思想（编程范式）
-- 面向切面编程
-- 相对应的：
-    - OOP 面向对象
-    - POP 面向过程
-
-
-
-
-
-
 
 ## 2. 数据库相关
 ### 数据库MySQL  Spring-Data-Jpa
@@ -210,3 +199,30 @@ log4j.appender.Console.layout=org.apache.log4j.PatternLayout
 log4j.appender.Console.layout.ConversionPattern=(%r ms) [%t] %-5p: %c#%M %x: %m%n
 ```
 -----------------------------
+
+
+## 4. AOP
+### AOP是一种程序设计思想（编程范式）
+- 面向切面编程
+- 相对应的：
+    - OOP 面向对象
+    - POP 面向过程
+- 将通用逻辑从业务逻辑中分离出来
+- 举例：接收请求时判断是否登录
+
+- tip：一般来说添加一个依赖的步骤
+    - pom中添加依赖
+    - 在启动类添加一个注解（aop不用加）
+    - 建立数据文件
+    
+### 依赖
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-aop</artifactId>
+</dependency>
+```
+
+### 日志打印
+private final static org.slf4j.Logger logger = LoggerFactory.getLogger(HttpAspect.class);
+logger.info("lkjsdf");
