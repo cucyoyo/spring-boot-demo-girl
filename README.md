@@ -1,9 +1,7 @@
-## spring boot 入门示例
+# spring boot 入门学习
 - 参考：[慕课网：2小时学会Spring Boot](https://www.imooc.com/learn/767) | [慕课网：Spring Boot进阶之Web进阶](https://www.imooc.com/learn/810)
 - 编辑器：IDEA （可以直接生成boot框架代码）
 - demo主要内容：http请求方法(几种注解方法) + 数据库基本增删改查
-
-- 进入目录后先把`mvn`相关的文件删掉
 
 ### 开发环境
 - SpringBoot版本：2.0.
@@ -14,8 +12,7 @@
 - PostMan
 - Chrome
 
-
-## 基础知识
+## 1. 基础知识
 ### 两种启动方式
 - 在IDEA中右键 run
 - 在命令行项目根目录下：1.编译：mvn install 2.java -jar target/girl-0.0.1-SNAPSHOT.jar (加参数 --spring.profiles.active=prod)
@@ -68,8 +65,26 @@ spring:
   profiles:
     active: dev
 ```
+### post\put 方法传参，在postMan中的设置
+![](./imgs/post-controller-parms.png)
+![](./imgs/put-controller-parms.png)
 
-## 数据库相关
+### 多点选择
+alt + shift + mouse
+
+### AOP是一种程序设计思想（编程范式）
+- 面向切面编程
+- 相对应的：
+    - OOP 面向对象
+    - POP 面向过程
+
+
+
+
+
+
+
+## 2. 数据库相关
 ### 数据库MySQL  Spring-Data-Jpa
 JPA 定义了一系列对象持久化的标准（文本上的一个规范）
 目前实现这一规范的产品有Hibernate\TopLink等
@@ -81,7 +96,7 @@ JPA 定义了一系列对象持久化的标准（文本上的一个规范）
 - PUT /girls/id 通过id更新一个女生
 - DELETE /girls/id 通过id删除一个女生
 
-### 1. 依赖
+### 依赖
 ```xml
 <dependency>
     <groupId>org.springframework.boot</groupId>
@@ -94,7 +109,7 @@ JPA 定义了一系列对象持久化的标准（文本上的一个规范）
 </dependency>
 
 ```
-### 2. 配置
+### 配置
 ```
 spring:
   profiles:
@@ -109,17 +124,15 @@ spring:
       ddl-auto: create # 在运行时自动创建一个表
     show-sql: true # 在控制台里面看到sql语句
 ```
-### post\put 方法传参，在postMan中的设置
-![](./imgs/post-controller-parms.png)
-![](./imgs/put-controller-parms.png)
-
-### 多点选择
-alt + shift + mouse
 
 ### 如果事务操作@Transaction不生效可能是数据表类型不对所致
 只有innodb类型的数据库才支持事务
 
 alter table table_name engine=innodb;  
+
+
+## 3. 踩坑 + 埋坑
+- java 9及以上版本不支持`spring-boot-devtools`中的`ClassLoaders`方法，在`files -> project structure -> JDKs`中更换版本到`jdk8`即可
 
 ### !!!!! 之前的各种依赖冲突报错可能都是由于这个问题 
 java.lang.NoSuchMethodError: javax.persistence.spi.PersistenceUnitInfo.getValidationMode()Lja
@@ -158,8 +171,7 @@ java.lang.NoSuchMethodError: javax.persistence.spi.PersistenceUnitInfo.getValida
 ### tomcat server配置
 - file - settings - build, execution, development - application server
 
-## 踩坑 + 埋坑
-- java 9及以上版本不支持`spring-boot-devtools`中的`ClassLoaders`方法，在`files -> project structure -> JDKs`中更换版本到`jdk8`即可
+
 
 - 以下横线之间的这些坑，都是因为java版本选错了导致的（注意java版本选择本地的java10，boot版本选择1.5.x，2.0.x还没试），否则直接就可以右键运行不报错了
 

@@ -1,6 +1,7 @@
 // 接口类：使用jpa操作数据库
-package com.example.kk;
+package com.example.kk.repository;
 
+import com.example.kk.domain.Girl;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

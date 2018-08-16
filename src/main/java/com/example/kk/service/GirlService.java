@@ -1,6 +1,8 @@
 // 事务
-package com.example.kk;
+package com.example.kk.service;
 
+import com.example.kk.domain.Girl;
+import com.example.kk.repository.GirlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

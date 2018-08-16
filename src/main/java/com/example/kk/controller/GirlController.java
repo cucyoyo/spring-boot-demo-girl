@@ -1,9 +1,16 @@
 // 调用数据库里的girl的jpa接口类，通过网络请求controller展示调用jpa接口的效果
-package com.example.kk;
+package com.example.kk.controller;
 
+import com.example.kk.domain.Girl;
+import com.example.kk.repository.GirlRepository;
+import com.example.kk.service.GirlService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Null;
 import java.util.List;
 
 @RestController
@@ -21,13 +28,24 @@ public class GirlController {
         return girlRepository.findAll();
     }
 
-    // 添加女生
-    @PostMapping(value = "girl")
-    public Girl girlAdd(@RequestParam("cupSize") String cupSize,
-                          @RequestParam("age") Integer age) {
-        Girl girl = new Girl();
-        girl.setCupSize(cupSize);
-        girl.setAge(age);
+    // 添加女生 + 进阶篇（表单验证）
+    @PostMapping(value = "/girl")
+//    public Girl girlAdd(@RequestParam("cupSize") String cupSize,
+//                          @RequestParam("age") Integer age) {
+//        Girl girl = new Girl();
+//        girl.setCupSize(cupSize);
+//        girl.setAge(age);
+//        return girlRepository.save(girl);
+//    }
+
+    // 以下是可以简化获取参数的写法
+    public Girl girlAdd(@Valid Girl girl, BindingResult bindingResult) { // valid注解用于表单验证, BindingResult用于获取验证的结果
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+            return null;
+        }
+        girl.setCupSize(girl.getCupSize());
+        girl.setAge(girl.getAge());
         return girlRepository.save(girl);
     }
 

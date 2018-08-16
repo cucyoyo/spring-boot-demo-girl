@@ -1,5 +1,5 @@
 // 用于从配置文件中注入一个类
-package com.example.kk;
+package com.example.kk.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
