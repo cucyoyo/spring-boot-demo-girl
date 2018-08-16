@@ -226,3 +226,14 @@ log4j.appender.Console.layout.ConversionPattern=(%r ms) [%t] %-5p: %c#%M %x: %m%
 ### 日志打印
 private final static org.slf4j.Logger logger = LoggerFactory.getLogger(HttpAspect.class);
 logger.info("lkjsdf");
+
+## 异常处理
+
+## 单元测试
+- 项目打包的时候会自动跑单元测试并输出结果，如果有测试错误，则打包失败
+`mvn clean package`
+- 打包过程跳过单元测试:
+`mvn clean package -Dmaven.test.skip=true`
+
+## TODO - List
+- 泛型 T

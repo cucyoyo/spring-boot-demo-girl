@@ -64,6 +64,6 @@ public class HttpAspect {
     // 获取请求方法返回的内容
     @AfterReturning(returning = "object", pointcut = "log()")
     public void doAfterReturning(Object object) {
-        logger.info("response={}", object.toString()); // 注意使用tostring方法要在Girl类中添加toString方法,实际上这里不加.toString,由于Girl对象有了这个方法，在控制台也可以自动打出字符串格式
+//        logger.info("response={}", object.toString()); // 注意使用tostring方法要在Girl类中添加toString方法,实际上这里不加.toString,由于Girl对象有了这个方法，在控制台也可以自动打出字符串格式
     }
 }

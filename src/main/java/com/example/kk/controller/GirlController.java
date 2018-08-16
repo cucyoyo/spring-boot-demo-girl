@@ -2,8 +2,10 @@
 package com.example.kk.controller;
 
 import com.example.kk.domain.Girl;
+import com.example.kk.domain.Result;
 import com.example.kk.repository.GirlRepository;
 import com.example.kk.service.GirlService;
+import com.example.kk.utils.ResultUtil;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,15 +43,15 @@ public class GirlController {
 //    }
 
     // 以下是可以简化获取参数的写法
-    public Girl girlAdd(@Valid Girl girl, BindingResult bindingResult) { // valid注解用于表单验证, BindingResult用于获取验证的结果
+    public Result<Girl> girlAdd(@Valid Girl girl, BindingResult bindingResult) { // valid注解用于表单验证, BindingResult用于获取验证的结果
         if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
-            return null;
+            return ResultUtil.error(1,bindingResult.getFieldError().getDefaultMessage());
         }
         System.out.println("2222");
         girl.setCupSize(girl.getCupSize());
         girl.setAge(girl.getAge());
-        return girlRepository.save(girl);
+
+        return ResultUtil.success(girlRepository.save(girl));
     }
 
     // 更新一个女生
@@ -83,6 +85,12 @@ public class GirlController {
     public String girlTwo() {
         girlService.insertTwo();
         return "插入两条数据";
+    }
+
+    // 统一异常处理
+    @GetMapping(value = "/girl/getAge/{id}")
+    public void getAge(@PathVariable("id") Integer id) throws Exception{
+        girlService.getAge(id);
     }
 
 }
