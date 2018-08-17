@@ -85,6 +85,32 @@ spring:
 ### 多点选择
 alt + shift + mouse
 
+### 给maven配置阿里云镜像，在`C:/user/[user name]/.m2`路径下添加或修改`settings.xml`文件
+```xml
+ <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                            https://maven.apache.org/xsd/settings-1.0.0.xsd">
+        <localRepository/>
+        <interactiveMode/>
+        <usePluginRegistry/>
+        <offline/>
+        <pluginGroups/>
+       <servers/>
+    <mirrors>
+     <mirror>
+       <id>alimaven</id>
+       <name>aliyun maven</name>
+       <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+       <mirrorOf>central</mirrorOf>
+     </mirror>
+   </mirrors>
+       <proxies/>
+       <profiles/>
+       <activeProfiles/>
+ </settings>
+```
+
 
 ## 2. 数据库相关
 ### 数据库MySQL  Spring-Data-Jpa
@@ -132,6 +158,18 @@ spring:
 
 alter table table_name engine=innodb;  
 
+### mysql升级后报警告
+Java连接Mysql数据库警告：
+> Establishing SSL connection without server's identity verification is not recommend
+
+Java使用mysql-jdbc连接MySQL出现如下警告：
+
+> Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+
+原因是MySQL在高版本需要指明是否进行SSL连接。解决方案如下：
+
+在mysql连接字符串url中加入ssl=true或者false即可，如下所示。
+`url=jdbc:mysql://127.0.0.1:3306/framework?characterEncoding=utf8&useSSL=true`
 
 ## 3. 踩坑 + 埋坑
 - java 9及以上版本不支持`spring-boot-devtools`中的`ClassLoaders`方法，在`files -> project structure -> JDKs`中更换版本到`jdk8`即可
